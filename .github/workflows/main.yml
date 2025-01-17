@@ -26,10 +26,14 @@ jobs:
         pip install -r requirements.txt
     - name: Analysing the code with black
       run: |
-        black --diff --check $(git ls-files '*.py')
+        black --diff --check src/
     - name: Analysing the code with isort
       run: |
-        isort --check-only --diff $(git ls-files '*.py')
+        isort --check-only --diff src/
     - name: Analysing the code with flask8
       run: |
-        flake8 $(git ls-files '*.py')
+        flake8 src/
+    - name: Running tests
+      run: |
+        pytest tests
+        
